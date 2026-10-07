@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MoodCup｜你的心情，今天是什麼顏色？</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;color:#3f3a45;background:#fffaf7;line-height:1.6}
+  a{text-decoration:none;color:inherit}
+  .nav{height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 7%;background:#fffaf7;position:sticky;top:0;z-index:10;border-bottom:1px solid #f1e7e2}
+  .logo{font-size:25px;font-weight:800;color:#ff7d91}
+  .nav-links{display:flex;gap:28px;font-size:14px;color:#665e67}
+  .btn{display:inline-block;background:#ff7d91;color:white;padding:13px 24px;border-radius:999px;font-weight:700;box-shadow:0 8px 20px rgba(255,125,145,.2);transition:.2s}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(255,125,145,.3)}
+  .hero{min-height:620px;display:flex;align-items:center;justify-content:space-between;padding:70px 9%;gap:50px;background:linear-gradient(135deg,#fffaf7 0%,#fff1f4 55%,#f8f2ff 100%)}
+  .hero-text{max-width:560px}
+  .tag{display:inline-block;background:#ffe0e6;color:#ef647d;padding:7px 15px;border-radius:999px;font-size:13px;font-weight:700;margin-bottom:18px}
+  h1{font-size:clamp(42px,6vw,72px);line-height:1.12;letter-spacing:-2px;margin-bottom:20px}
+  h1 span{color:#ff7189}
+  .hero-text p{font-size:18px;color:#6d6670;margin-bottom:30px;max-width:510px}
+  .price{font-size:30px;font-weight:800;margin:25px 0}
+  .price small{font-size:14px;color:#918992;font-weight:400;margin-left:8px}
+  .cup-wrap{width:390px;height:390px;display:flex;align-items:center;justify-content:center;position:relative}
+  .circle{position:absolute;width:350px;height:350px;border-radius:50%;background:linear-gradient(145deg,#ffd8df,#e9ddff);opacity:.8}
+  .cup{position:relative;width:155px;height:245px;border-radius:25px 25px 38px 38px;background:linear-gradient(135deg,#ff9bad,#ff6f88);box-shadow:18px 25px 35px rgba(173,91,110,.2),inset -12px -15px 20px rgba(190,55,83,.12);border:5px solid rgba(255,255,255,.75)}
+  .cup:before{content:"";position:absolute;top:-24px;left:-7px;width:160px;height:30px;border-radius:50%;background:#f6f0f3;border:5px solid rgba(255,255,255,.85);box-shadow:0 4px 8px rgba(0,0,0,.08)}
+  .cup:after{content:"MOOD\\A CUP";white-space:pre;text-align:center;position:absolute;top:83px;left:25px;color:white;font-size:22px;font-weight:900;line-height:1.05;letter-spacing:2px}
+  .steam{position:absolute;top:15px;left:140px;font-size:35px;color:white;opacity:.7;transform:rotate(-10deg)}
+  section{padding:80px 9%}
+  .section-title{text-align:center;margin-bottom:45px}
+  .section-title h2{font-size:38px;margin-bottom:10px}
+  .section-title p{color:#827981}
+  .features{display:grid;grid-template-columns:repeat(3,1fr);gap:25px}
+  .card{background:white;border:1px solid #f0e6e4;border-radius:25px;padding:35px 28px;text-align:center;box-shadow:0 12px 30px rgba(78,48,56,.05)}
+  .icon{font-size:42px;margin-bottom:18px}
+  .card h3{font-size:20px;margin-bottom:10px}
+  .card p{color:#776f76;font-size:15px}
+  .how{background:#fff1f4}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+  .step{text-align:center}
+  .num{width:48px;height:48px;border-radius:50%;background:#ff7d91;color:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-size:20px;font-weight:800}
+  .quote{max-width:800px;margin:auto;background:white;border-radius:28px;padding:45px;text-align:center;box-shadow:0 15px 40px rgba(80,50,60,.07)}
+  .quote p{font-size:22px;font-weight:700;margin-bottom:15px}
+  .quote small{color:#8a8189}
+  .cta{padding:90px 9%;text-align:center;background:linear-gradient(135deg,#ff8398,#a98ce9);color:white}
+  .cta h2{font-size:42px;margin-bottom:12px}
+  .cta p{margin-bottom:28px;opacity:.9}
+  .cta .btn{background:white;color:#e86d83;box-shadow:none}
+  footer{padding:25px 7%;display:flex;justify-content:space-between;align-items:center;font-size:13px;color:#928991;background:#fffaf7}
+  @media(max-width:800px){
+    .nav-links{display:none}.hero{flex-direction:column;text-align:center;padding-top:55px}.hero-text p{margin-left:auto;margin-right:auto}.cup-wrap{width:320px;height:320px}.circle{width:290px;height:290px}
+    .features,.steps{grid-template-columns:1fr}.features{gap:18px}section{padding:65px 7%}.quote{padding:30px 20px}
+    footer{flex-direction:column;gap:8px}
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="logo">♡ MoodCup</div>
+  <div class="nav-links">
+    <a href="#features">特色</a>
+    <a href="#how">怎麼用</a>
+    <a href="#buy">立即購買</a>
+  </div>
+  <a class="btn" href="#buy">限時優惠</a>
+</nav>
+
+<header class="hero">
+  <div class="hero-text">
+    <span class="tag">NEW · 2026</span>
+    <h1>你的心情，<br><span>今天是什麼顏色？</span></h1>
+    <p>MoodCup 情緒變色隨行杯，遇到不同溫度會呈現不同顏色。讓每天喝水、喝咖啡，都多一點可愛的小驚喜。</p>
+    <div class="price">NT$ 699 <small>原價 NT$899</small></div>
+    <a class="btn" href="#buy">我要我的 MoodCup →</a>
+  </div>
+  <div class="cup-wrap" aria-label="MoodCup 商品示意圖">
+    <div class="circle"></div>
+    <div class="cup"><div class="steam">〰</div></div>
+  </div>
+</header>
+
+<section id="features">
+  <div class="section-title">
+    <h2>小小一杯，剛剛好的療癒</h2>
+    <p>為日常加入一點「想喝水」的理由。</p>
+  </div>
+  <div class="features">
+    <div class="card">
+      <div class="icon">🌡️</div>
+      <h3>溫度變色</h3>
+      <p>冷飲、常溫、熱飲呈現不同色調，喝飲料也能玩一點小魔法。</p>
+    </div>
+    <div class="card">
+      <div class="icon">💧</div>
+      <h3>隨身好攜帶</h3>
+      <p>輕巧杯身搭配防漏杯蓋，放進包包，通勤上課都方便。</p>
+    </div>
+    <div class="card">
+      <div class="icon">✨</div>
+      <h3>療癒系設計</h3>
+      <p>柔和漸層配色，放在桌上就是小小的生活風景。</p>
+    </div>
+  </div>
+</section>
+
+<section class="how" id="how">
+  <div class="section-title">
+    <h2>三步驟，讓杯子跟著你變色</h2>
+    <p>不用 App、不用充電，拿起來就能使用。</p>
+  </div>
+  <div class="steps">
+    <div class="step"><div class="num">1</div><h3>倒入飲料</h3><p>咖啡、茶、水都可以。</p></div>
+    <div class="step"><div class="num">2</div><h3>等待溫度變化</h3><p>杯身會隨飲料溫度改變色彩。</p></div>
+    <div class="step"><div class="num">3</div><h3>帶著它出門</h3><p>每天都讓 MoodCup 陪你一杯。</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="quote">
+    <p>「原本只是想買一個水杯，結果每天都在期待它今天會變什麼顏色。」</p>
+    <small>— 小安｜MoodCup 使用者</small>
+  </div>
+</section>
+
+<section class="cta" id="buy">
+  <h2>今天，就讓心情變個色。</h2>
+  <p>首批限量優惠，NT$699／個，送限定杯套。</p>
+  <a class="btn" href="javascript:buyNow()">立即帶回家 ♡</a>
+</section>
+
+<footer>
+  <span>© 2026 MoodCup Studio</span>
+  <span>虛構商品展示網站｜所有商品資訊皆為創作</span>
+</footer>
+
+<script>
+function buyNow(){
+  alert("感謝支持 MoodCup！\\n這是一個虛構商品網站，此按鈕目前僅作展示用途。");
+}
+</script>
+</body>
+</html>
